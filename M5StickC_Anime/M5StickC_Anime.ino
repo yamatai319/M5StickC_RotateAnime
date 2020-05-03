@@ -15,7 +15,7 @@ int xpos = 40;
 void setup() {
   // put your setup code here, to run once:
   M5.begin();
-  M5.Sh200Q.Init();//加速度を有効//Acceleromater enable
+  M5.IMU.Init();//加速度を有効//Acceleromater enable
   
   M5.Axp.ScreenBreath(9);//画面輝度を設定(7~15)//Brightness
   M5.Lcd.setRotation(3);//画面を横向きに//DisplayRotation
@@ -25,7 +25,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  M5.Sh200Q.getAccelData(&accX,&accY,&accZ);
+  M5.IMU.getAccelData(&accX,&accY,&accZ);
   accY = accY-0.0;//補正(必要なら)//Calibration(if necessary)
   if(accY<-0.2||accY>0.2){
     int moveSpeed = -int(floor(accY*10/2));
